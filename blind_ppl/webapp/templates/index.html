@@ -1,18 +1,31 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Am i blind?</title>
-        {% load static %}  
-        <link rel="stylesheet" href="{% static 'style.css' %}">
-    </head>
-    <body>
-        <div id="camera"></div>
-        <button onclick="take_snapshot()">Capture</button>
-        <div id="result"></div>
-    </body>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script> -->
-    {% load static %}  
-    <script src="{% static 'webcam.min.js' %}"></script>
-    <script src="{% static 'app.js' %}"></script>
 
+<html lang=”en”>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">    
+        <title>Camera App</title>    <!-- Link to your main style sheet-->
+        {% load static %} 
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+    </head>
+    <body>    
+        <!-- Camera -->
+        <main id="camera">        
+            <!-- Camera sensor -->
+            <canvas id="camera--sensor"></canvas>        
+            <!-- Camera view -->
+            <video id="camera--view" autoplay playsinline></video>        
+            <!-- Camera output -->
+            <img src="//:0" alt="" id="camera--output">        
+            <!-- Camera trigger -->
+            <button id="camera--trigger">Take a picture</button>    
+        </main>    
+        <!-- Reference to your JavaScript file -->
+        {% load static %} 
+        <script src="{% static 'app.js' %}"></script>
+    </body>
 </html>
+
+
+
+
