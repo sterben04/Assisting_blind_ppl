@@ -120,7 +120,39 @@ cameraTrigger.onclick = function() {
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
     cameraOutput.src = cameraSensor.toDataURL("image/png");
     cameraOutput.classList.add("taken");
-    ReImg.fromCanvas(document.getElementById('camera--sensor')).toPng()
-    ReImg.fromCanvas(document.getElementById('camera--sensor')).downloadPng()
+    // ReImg.fromCanvas(document.getElementById('camera--sensor')).toPng()
+    // ReImg.fromCanvas(document.getElementById('camera--sensor')).downloadPng()
+
+    var data_url = cameraSensor.toDataURL().split(';base64,')[1];
+    var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+
+    function csrfSafeMethod(method) {
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
+    $.ajaxSetup({
+        beforeSend: function (xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
+    });
+
+    $.ajax({
+        
+        type: "POST",
+        url: "http://127.0.0.1:8000/webapp/get_image/",
+        data: { 
+           'imgBase64': data_url
+        }
+      }).done(function(o) {
+        console.log('saved'); 
+   
+      });
+
+
+
+
+
 };// Start the video stream when the window loads
 window.addEventListener("load", cameraStart, false);
