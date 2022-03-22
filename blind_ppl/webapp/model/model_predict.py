@@ -32,8 +32,8 @@ def text_to_dict(file_name):
 
     
 
-wordtoix = text_to_dict('/home/aravind/volume/final_project/Assisting_blind_ppl/blind_ppl/webapp/model/wordtoix')
-ixtoword = text_to_dict('/home/aravind/volume/final_project/Assisting_blind_ppl/blind_ppl/webapp/model/ixtoword')
+wordtoix = text_to_dict('webapp\model\wordtoix')
+ixtoword = text_to_dict('webapp\model\ixtoword')
 
 
 def imageSearch(photo):
@@ -55,8 +55,8 @@ def imageSearch(photo):
 
 
 
-model = load_model('/home/aravind/volume/final_project/Assisting_blind_ppl/blind_ppl/webapp/model/model_weights/model_149.h5')
-pred_image="/home/aravind/volume/final_project/Assisting_blind_ppl/blind_ppl/webapp/static/images/image.jpg"
+model = load_model('webapp\model\model_weights\model_149.h5')
+pred_image="webapp\static\images\image.jpg"
 
 
 modell = InceptionV3(weights='imagenet')

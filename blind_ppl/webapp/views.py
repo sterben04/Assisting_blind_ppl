@@ -28,7 +28,7 @@ def get_image(request):
     
         binary_data = a2b_base64(image_b64)
 
-        fd = open('/home/aravind/volume/final_project/Assisting_blind_ppl/blind_ppl/webapp/static/images/image.jpg', 'wb')
+        fd = open('webapp\static\images\image.jpg', 'wb')
         fd.write(binary_data)
         fd.close()
 
