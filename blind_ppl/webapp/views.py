@@ -12,8 +12,8 @@ import re
 from binascii import a2b_base64
 import pickle
 from webapp.model.model_predict import gen_caption  
-
-
+from webapp.model.translation import translate_lang
+from webapp.model.tts import text2speech
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
@@ -37,12 +37,16 @@ def get_image(request):
         # caption = imageSearch(encode(pred_image).reshape((1,2048)))
         caption = gen_caption
         print(caption)
+        translated_text = translate_lang(caption, value).text
+        print(translated_text)
+        text2speech(translated_text)
     return ''
 
 
 @csrf_exempt
 def get_regional_lang(request):
     if request.method == 'POST':
+        global value
         value = request.POST.get('dropdown')
         print(value)
         
